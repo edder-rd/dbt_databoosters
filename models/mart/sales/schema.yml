@@ -33,12 +33,12 @@ models:
       la venta agregada de un vendedor para una marca en un mes especifico,
       con las claves foraneas hacia las dimensiones de vendedor y marca.
     columns:
-      - name: date
+      - name: Date
         description: "Mes de la venta (primer dia del mes, tipo DATE o TIMESTAMP)"
         tests:
           - not_null
 
-      - name: id_salesperson
+      - name: ID_SALESPERSON
         description: "Clave foranea hacia dim_salesperson"
         tests:
           - not_null
@@ -47,7 +47,7 @@ models:
                 to: ref('dim_salesperson')
                 field: ID_SALESPERSON
 
-      - name: id_carmake
+      - name: ID_CARMAKE
         description: "Clave foranea hacia dim_carmake"
         tests:
           - not_null
@@ -56,12 +56,12 @@ models:
                 to: ref('dim_carmake')
                 field: ID_CARMAKE
 
-      - name: totalsale
+      - name: TotalSale
         description: "Suma total de ventas (sale_price - commission_earned) para el grupo"
         tests:
           - not_null
 
-      - name: totalcommission
+      - name: TotalCommission
         description: "Suma total de comisiones ganadas para el grupo"
         tests:
           - not_null
