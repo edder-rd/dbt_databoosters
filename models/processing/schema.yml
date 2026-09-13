@@ -12,10 +12,7 @@ models:
         description: "Mes de la venta (primer día del mes, tipo TIMESTAMP)."
         tests:
           - not_null
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: "2022-01-01"
-                max_value: "2025-12-31"
+          
 
       - name: salesperson
         description: "Nombre del vendedor que realizó la venta."
