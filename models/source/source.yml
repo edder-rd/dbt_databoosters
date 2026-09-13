@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: raw_car_sales          # Nombre lógico que usarás en dbt
+    description: "Datos crudos de ventas de autos cargados de CSV"
+    database: databoosters        # Tu project ID en BigQuery
+    schema: dbt_databoosters      # Tu dataset en BigQuery
+    tables:
+      - name: car_sales           # Nombre exacto de la tabla en BigQuery
+        description: "Tabla con todas las ventas de autos 2022-2023"
+        columns:
+          - name: Date
+            description: "Fecha y hora de la venta"
+            tests:
+              - not_null
+          - name: Salesperson
+            description: "Nombre del vendedor"
+          - name: Customer Name
+            description: "Nombre del cliente"
+          - name: Car Make
+            description: "Marca del auto"
+          - name: Car Model
+            description: "Modelo del auto"
+          - name: Car Year
+            description: "Año del auto"
+          - name: Sale Price
+            description: "Precio de venta"
+          - name: Commission Rate
+            description: "Tasa de comisión"
+          - name: Commission Earned
+            description: "Comisión ganada"

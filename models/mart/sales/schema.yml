@@ -1,0 +1,69 @@
+version: 2
+
+models:
+  - name: dim_carmake
+    description: "Dimension de Marcas de Vehiculos. Contiene una clave unica para cada marca"
+    columns:
+      - name: ID_CARMAKE
+        description: "Clave subrogada unica para cada marca de vehiculo"
+        tests:
+          - unique
+          - not_null
+      - name: car_make
+        description: "Nombre de la marca del vehiculo"
+        tests:
+          - not_null
+
+  - name: dim_salesperson
+    description: "Dimension de Vendedores. Contiene clave unica para cada vendedor"
+    columns:
+      - name: ID_SALESPERSON
+        description: "Clave subrogada unica para cada vendedor"
+        tests:
+          - unique
+          - not_null
+      - name: SALESPERSON
+        description: "Nombre del vendedor"
+        tests:
+          - not_null
+
+  - name: fct_montly_sales
+    description: >
+      Tabla de hechos con el detalle mensual de ventas. Cada fila representa
+      la venta agregada de un vendedor para una marca en un mes especifico,
+      con las claves foraneas hacia las dimensiones de vendedor y marca.
+    columns:
+      - name: date
+        description: "Mes de la venta (primer dia del mes, tipo DATE o TIMESTAMP)"
+        tests:
+          - not_null
+
+      - name: id_salesperson
+        description: "Clave foranea hacia dim_salesperson"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_salesperson')
+                field: ID_SALESPERSON
+
+      - name: id_carmake
+        description: "Clave foranea hacia dim_carmake"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_carmake')
+                field: ID_CARMAKE
+
+      - name: totalsale
+        description: "Suma total de ventas (sale_price - commission_earned) para el grupo"
+        tests:
+          - not_null
+
+      - name: totalcommission
+        description: "Suma total de comisiones ganadas para el grupo"
+        tests:
+          - not_null
+          
+          
