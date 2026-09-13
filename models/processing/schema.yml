@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: psg_montly_sales_make    # Reemplaza con el nombre real del archivo .sql
+    description: >
+      Resumen mensual de ventas y comisiones agrupado por vendedor y marca de auto.
+      Cada fila representa un mes, un vendedor y una marca específica, con los
+      totales de venta neta y comisión generada.
+
+    columns:
+      - name: sale_month
+        description: "Mes de la venta (primer día del mes, tipo TIMESTAMP)."
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: "2022-01-01"
+                max_value: "2025-12-31"
+
+      - name: salesperson
+        description: "Nombre del vendedor que realizó la venta."
+        tests:
+          - not_null
+
+      - name: car_make
+        description: "Marca del auto vendido (por ejemplo: Toyota, Ford, BMW)."
+        tests:
+          - not_null
+
+      - name: total_sale
+        description: "Suma de (sale_price - commission_earned) para el grupo."
+        tests:
+          - not_null
+
+      - name: total_commission
+        description: "Suma de comisiones ganadas para el grupo."
+        tests:
+          - not_null
+          - non_negative   # Si tienes el paquete dbt_utils instalado
