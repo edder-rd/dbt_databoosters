@@ -8,7 +8,7 @@ models:
       totales de venta neta y comisión generada.
 
     columns:
-      - name: sale_month
+      - name: Date
         description: "Mes de la venta (primer día del mes, tipo TIMESTAMP)."
         tests:
           - not_null
@@ -24,12 +24,12 @@ models:
         tests:
           - not_null
 
-      - name: total_sale
+      - name: Total_Sale
         description: "Suma de (sale_price - commission_earned) para el grupo."
         tests:
           - not_null
 
-      - name: total_commission
+      - name: Total_Commission
         description: "Suma de comisiones ganadas para el grupo."
         tests:
           - not_null
