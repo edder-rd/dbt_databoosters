@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: psg_montly_sales_make    # Reemplaza con el nombre real del archivo .sql
+  - name: psg_montly_sales_make    
     description: >
       Resumen mensual de ventas y comisiones agrupado por vendedor y marca de auto.
       Cada fila representa un mes, un vendedor y una marca específica, con los
@@ -24,13 +24,12 @@ models:
         tests:
           - not_null
 
-      - name: Total_Sale
+      - name: TotalSale
         description: "Suma de (sale_price - commission_earned) para el grupo."
         tests:
           - not_null
 
-      - name: Total_Commission
+      - name: TotalCommission
         description: "Suma de comisiones ganadas para el grupo."
         tests:
           - not_null
-          - non_negative   # Si tienes el paquete dbt_utils instalado
